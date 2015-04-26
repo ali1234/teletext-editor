@@ -67,7 +67,6 @@ class RequestHandler(BaseHTTPRequestHandler):
         # for now just read/write the string
         filename = os.path.join(self.datapath(page), '%04x.tt'%subpage)
         data = file(filename).read()
-        print filename, data
         return data
 
     def url2storage(self, page, subpage, urlencoded):
