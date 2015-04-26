@@ -78,7 +78,9 @@ class RequestHandler(BaseHTTPRequestHandler):
         f.close()
 
     def do_store_page(self, page, subpage):
-        self.url2storage(page, subpage, self.rfile.read())
+        content_length = int(self.headers['Content-Length'])
+        data = self.rfile.read(content_length)
+        self.url2storage(page, subpage, data)
         self.send_response(200, "OK")
         self.end_headers()
         self.wfile.close()        
@@ -133,7 +135,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         try:
             data = self.path.strip('/').split('/')
             if len(data) == 2:
-                self.do_post_page(int(data[0], 16), int(data[1], 16))
+                self.do_store_page(int(data[0], 16), int(data[1], 16))
             else:
                 raise "ERROR"
         except:
