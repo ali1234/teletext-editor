@@ -27,11 +27,6 @@
 
 # Notes
 
-# The editor does not have capability to POST pages, but this is
-# the only feature which needs to be implemented for this whole
-# thing to work. However, since this feature does not exist,
-# I have not tested the code paths for POSTing subpages.
-
 # Currently disk files are just a text file with the url encoded
 # string. But by reimplementing storage2url and url2storage the
 # pages can be stored in any format, including that used by
@@ -42,6 +37,10 @@
 
 # The exception handling is lazy and catches everything, even syntax
 # errors. This makes debugging difficult and should be fixed.
+
+# Concurrency is not supported. If two people edit the same page they
+# will overwrite each other's changes constantly. Multiple people 
+# editing different pages should work however.
 
 from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
 
