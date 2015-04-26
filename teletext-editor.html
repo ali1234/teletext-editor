@@ -849,6 +849,14 @@ function save_to_hash() {
 		encoding += "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_".charAt(b64[i]); 
 	}
 	window.location.hash = encoding;
+        var http = new XMLHttpRequest();
+        var pathArray = window.location.pathname.split('/')
+        var url = '/' + pathArray[2] + '/' + pathArray[3];
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.setRequestHeader("Content-length", encoding.length);
+        http.setRequestHeader("Connection", "close");
+        http.send(encoding);
 }
 
 
