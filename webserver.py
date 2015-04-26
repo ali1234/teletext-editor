@@ -40,6 +40,9 @@
 
 # HEAD requests are not implemented.
 
+# The exception handling is lazy and catches everything, even syntax
+# errors. This makes debugging difficult and should be fixed.
+
 from BaseHTTPServer import BaseHTTPRequestHandler,HTTPServer
 
 import os, errno
